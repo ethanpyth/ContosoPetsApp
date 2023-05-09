@@ -89,6 +89,7 @@ do
     Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
 
     readResult = Console.ReadLine();
+    bool validEntry = false;
 
     if (readResult != null)
     {
@@ -128,7 +129,6 @@ do
                 }
                 while (anotherPet == "y" && petCount < maxPets)
                 {
-                    bool validEntry = false;
                     // get species (cat or dog) - string animalSpecies is a required field 
                     do
                     {
@@ -247,28 +247,86 @@ do
                         }
                     } while (anotherPet != "y" && anotherPet != "n");
                 }
+                Console.WriteLine("Press the Enter key to continue");
+
+                // pause code execution
+                readResult = Console.ReadLine();
                 break;
             case "3":
                 // Ensure animal ages and physical descriptions are complete
-                Console.WriteLine("Challenge Project - please check back soon to see progress.");
+                for (int i = 0; i < maxPets; i++)
+                {
+                    if (ourAnimals[i, 0] != "ID #: ")
+                    {
+                        Console.WriteLine("here");
+                        if (ourAnimals[i, 2] == "Age: ?")
+                        {
+                            Console.WriteLine(ourAnimals[i, 0]);
+                            do
+                            {
+                                int petAge;
+                                Console.WriteLine("Enter the pet's age");
+                                readResult = Console.ReadLine();
+                                if (readResult != null && readResult != "")
+                                {
+                                    animalAge = readResult.ToLower();
+                                    validEntry = int.TryParse(animalAge, out petAge);
+                                }
+                            } while (validEntry == false);
+                        }
+                        if (ourAnimals[i, 4] == "Physical description: ")
+                        {
+                            do
+                            {
+                                Console.WriteLine("Enter a physical description of the pet (size, color, gender, weight, housebroken)");
+                                readResult = Console.ReadLine();
+                                if (readResult != null && readResult != "")
+                                {
+                                    animalPhysicalDescription = readResult.ToLower();
+                                }
+                            } while (animalPhysicalDescription == "");
+                        }
+                    }
+                }
+                // pause code execution
+                Console.WriteLine("Age and physical description fields are complete for all of our friends.");
+                
+                Console.WriteLine("Press the Enter key to continue");
+
+                // pause code execution
+                readResult = Console.ReadLine();
                 break;
             case "4":
                 Console.WriteLine("Challenge Project - please check back soon to see progress.");
+                Console.WriteLine("Press the Enter key to continue");
+
+                // pause code execution
+                readResult = Console.ReadLine();
                 break;
             case "5":
+                Console.WriteLine("Press the Enter key to continue");
+
+                // pause code execution
+                readResult = Console.ReadLine();
                 break;
             case "6":
+                Console.WriteLine("Press the Enter key to continue");
+
+                // pause code execution
+                readResult = Console.ReadLine();
                 break;
             case "7":
+                Console.WriteLine("Press the Enter key to continue");
+
+                // pause code execution
+                readResult = Console.ReadLine();
                 break;
             case "8":
+                Console.WriteLine("Press the Enter key to continue");
+
+                // pause code execution
+                readResult = Console.ReadLine();
                 break;
         }
-        
     }
-
-    Console.WriteLine("Press the Enter key to continue");
-
-    // pause code execution
-    readResult = Console.ReadLine();
 } while (readResult != "exit");
